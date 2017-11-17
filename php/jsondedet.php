@@ -13,6 +13,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+if (!defined("JSONDEDET")) die("Can not access directly");
 
 abstract class JSONDEDETABS {
 	// http://php.net/manual/en/function.http-response-code.php
