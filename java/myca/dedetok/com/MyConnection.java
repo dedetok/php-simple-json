@@ -56,6 +56,10 @@ public class MyConnection {
 		OutputStreamWriter out = new OutputStreamWriter(mHttpURLConnection.getOutputStream());
 		out.close();
 
+		// get response
+		int responseCode = mHttpURLConnection.getResponseCode();
+		System.out.println("GET Response Code :: " + responseCode); // debug
+		
 		// 5 Get an Input Stream from the connection
 		InputStream mIS = mHttpURLConnection.getInputStream();
 		
@@ -91,16 +95,16 @@ public class MyConnection {
 		// 2 Retrieve the URLConnection object
 		mHttpsURLConnection = (HttpsURLConnection) mUrl.openConnection();
 		
-	        /** 20191205**/
-	        //Log.i("DEBUG", "start hack"); // debug
-	        //  add TLS version 1.2 support
-	        //ProviderInstaller.installIfNeeded(getApplicationContext()); // java android
-	        SSLContext sslContext;
+		/** 20191205**/
+		//Log.i("DEBUG", "start hack"); // debug
+		//  add TLS version 1.2 support
+		//ProviderInstaller.installIfNeeded(getApplicationContext()); // java android
+		SSLContext sslContext;
 		sslContext = SSLContext.getInstance("TLSv1.2");
-	        sslContext.init(null, null, null);
-	        sslContext.createSSLEngine();
-	        mHttpsURLConnection.setSSLSocketFactory(sslContext.getSocketFactory());
-	        //Log.i("DEBUG", "end hack"); // debug
+		sslContext.init(null, null, null);
+		sslContext.createSSLEngine();
+		mHttpsURLConnection.setSSLSocketFactory(sslContext.getSocketFactory());
+		//Log.i("DEBUG", "end hack"); // debug
 		
 		// 3 Set output capability on the URLConnection
 		mHttpsURLConnection.setRequestMethod("GET");
@@ -109,6 +113,10 @@ public class MyConnection {
 		// 4 Get an output stream from the connection
 		OutputStreamWriter out = new OutputStreamWriter(mHttpsURLConnection.getOutputStream());
 		out.close();
+
+		// get response
+		int responseCode = mHttpURLConnection.getResponseCode();
+		System.out.println("GET Response Code :: " + responseCode); // debug
 
 		// 5 Get an Input Stream from the connection
 		InputStream mIS = mHttpsURLConnection.getInputStream();
@@ -149,10 +157,13 @@ public class MyConnection {
 		
 		// 4 Get an output stream from the connection
 		OutputStreamWriter out = new OutputStreamWriter(mHttpURLConnection.getOutputStream());
-		if (mHM!=null) {
+		if (!mSB.toString().isEmpty()) {
 			out.write("string=" + mSB.toString().getBytes());
 		}
 		out.close();
+
+		int responseCode = mHttpURLConnection.getResponseCode();
+		System.out.println("POST Response Code :: " + responseCode); // debug
 
 		// 5 Get an Input Stream from the connection
 		InputStream mIS = mHttpURLConnection.getInputStream();
@@ -189,17 +200,16 @@ public class MyConnection {
 		// 2 Retrieve the URLConnection object
 		mHttpURLConnection = (HttpURLConnection) mUrl.openConnection();
 
-	        /** 20191205**/
-	        //Log.i("DEBUG", "start hack"); // debug
-	        //  add TLS version 1.2 support
-	        //ProviderInstaller.installIfNeeded(getApplicationContext()); // java android
-	        SSLContext sslContext;
+		/** 20191205**/
+		//Log.i("DEBUG", "start hack"); // debug
+		//  add TLS version 1.2 support
+		//ProviderInstaller.installIfNeeded(getApplicationContext()); // java android
+		SSLContext sslContext;
 		sslContext = SSLContext.getInstance("TLSv1.2");
-	        sslContext.init(null, null, null);
-	        sslContext.createSSLEngine();
-	        mHttpsURLConnection.setSSLSocketFactory(sslContext.getSocketFactory());
-	        //Log.i("DEBUG", "end hack"); // debug
-		
+		sslContext.init(null, null, null);
+		sslContext.createSSLEngine();
+		mHttpsURLConnection.setSSLSocketFactory(sslContext.getSocketFactory());
+		//Log.i("DEBUG", "end hack"); // debug
 		
 		// 3 Set output capability on the URLConnection
 		mHttpURLConnection.setDoOutput(true);
@@ -208,9 +218,14 @@ public class MyConnection {
 		// 4 Get an output stream from the connection
 		OutputStreamWriter out = new OutputStreamWriter(mHttpURLConnection.getOutputStream());
 		if (mHM!=null) {
-			out.write("string=" + mSB.toString().getBytes());
+			out.write(mSB.toString());
 		}
+		out.flush();
 		out.close();
+
+
+		int responseCode = mHttpURLConnection.getResponseCode();
+		System.out.println("POST Response Code :: " + responseCode); // debug
 
 		// 5 Get an Input Stream from the connection
 		InputStream mIS = mHttpURLConnection.getInputStream();
