@@ -149,7 +149,7 @@ public class MyConnection {
 		
 		// 4 Get an output stream from the connection
 		OutputStreamWriter out = new OutputStreamWriter(mHttpURLConnection.getOutputStream());
-		if (mSB!=null) {
+		if (mHM!=null) {
 			out.write("string=" + mSB.toString().getBytes());
 		}
 		out.close();
@@ -207,7 +207,7 @@ public class MyConnection {
 		
 		// 4 Get an output stream from the connection
 		OutputStreamWriter out = new OutputStreamWriter(mHttpURLConnection.getOutputStream());
-		if (mSB!=null) {
+		if (mHM!=null) {
 			out.write("string=" + mSB.toString().getBytes());
 		}
 		out.close();
