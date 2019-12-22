@@ -162,6 +162,7 @@ public class MyConnection {
 		}
 		out.close();
 
+		// get response
 		int responseCode = mHttpURLConnection.getResponseCode();
 		System.out.println("POST Response Code :: " + responseCode); // debug
 
@@ -223,12 +224,9 @@ public class MyConnection {
 		out.flush();
 		out.close();
 
-
+		// get response
 		int responseCode = mHttpsURLConnection.getResponseCode();
 		System.out.println("POST Response Code :: " + responseCode); // debug
-		
-		String responseMessage = mHttpsURLConnection.getResponseMessage();
-		System.out.println("POST Response Code :: " + responseMessage); // debug
 
 		// 5 Get an Input Stream from the connection
 		InputStream mIS = mHttpsURLConnection.getInputStream();
