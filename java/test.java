@@ -17,12 +17,12 @@ public class test {
 		try {
 			System.out.println("--GET--");
 			System.out.println("http: "+mCon.getHttp(mUrlStr, null));
-			//System.out.println("http: "+mCon.getHttps(mUrlStrS, mHM));
+			//System.out.println("http: "+mCon.getHttps(mUrlStr, mHM));
 			System.out.println("https: "+mCon.getHttps(mUrlStrS, null));
 			//System.out.println("https: "+mCon.getHttps(mUrlStrS, mHM));
 			System.out.println("--POST--");
 			System.out.println("http: "+mCon.postHttp(mUrlStr, null));
-			System.out.println("https: "+mCon.postHttps(mUrlStr, null));
+			System.out.println("https: "+mCon.postHttps(mUrlStrS, null));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
