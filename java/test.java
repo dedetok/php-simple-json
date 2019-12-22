@@ -15,12 +15,14 @@ public class test {
 		String mUrlStr = "http://garasiku.web.id/web/joomla/index.php";
 		String mUrlStrS = "https://garasiku.web.id/web/joomla/index.php";
 		try {
-			System.out.println("one ");
-			System.out.println(mCon.getHttp(mUrlStr, null));
-			//System.out.println(mCon.getHttp(mUrlStr, mHM));
-			System.out.println("two");
-			System.out.println(mCon.getHttps(mUrlStrS, null));
-			//System.out.println(mCon.getHttps(mUrlStrS, mHM));
+			System.out.println("--GET--");
+			System.out.println("http: "+mCon.getHttp(mUrlStr, null));
+			//System.out.println("http: "+mCon.getHttps(mUrlStrS, mHM));
+			System.out.println("https: "+mCon.getHttps(mUrlStrS, null));
+			//System.out.println("https: "+mCon.getHttps(mUrlStrS, mHM));
+			System.out.println("--POST--");
+			System.out.println("http: "+mCon.postHttp(mUrlStr, null));
+			System.out.println("https: "+mCon.postHttps(mUrlStr, null));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,6 +33,7 @@ public class test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
   
 }
