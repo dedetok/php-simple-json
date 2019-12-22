@@ -49,11 +49,11 @@ public class MyConnection {
 		mHttpURLConnection = (HttpURLConnection) mUrl.openConnection();
 
 		// 3 Set output capability on the URLConnection
+		mHttpURLConnection.setRequestMethod("GET");
 		mHttpURLConnection.setDoOutput(true);
 		
 		// 4 Get an output stream from the connection
 		OutputStreamWriter out = new OutputStreamWriter(mHttpURLConnection.getOutputStream());
-		//out.write("string=" + mUrlEnStr);
 		out.close();
 
 		// 5 Get an Input Stream from the connection
@@ -91,18 +91,19 @@ public class MyConnection {
 		// 2 Retrieve the URLConnection object
 		mHttpsURLConnection = (HttpsURLConnection) mUrl.openConnection();
 		
-        /** 20191205**/
-        //Log.i("DEBUG", "start hack"); // debug
-        //  add TLS version 1.2 support
-        //ProviderInstaller.installIfNeeded(getApplicationContext()); // java android
-        SSLContext sslContext;
+	        /** 20191205**/
+	        //Log.i("DEBUG", "start hack"); // debug
+	        //  add TLS version 1.2 support
+	        //ProviderInstaller.installIfNeeded(getApplicationContext()); // java android
+	        SSLContext sslContext;
 		sslContext = SSLContext.getInstance("TLSv1.2");
-        sslContext.init(null, null, null);
-        sslContext.createSSLEngine();
-        mHttpsURLConnection.setSSLSocketFactory(sslContext.getSocketFactory());
-        //Log.i("DEBUG", "end hack"); // debug
+	        sslContext.init(null, null, null);
+	        sslContext.createSSLEngine();
+	        mHttpsURLConnection.setSSLSocketFactory(sslContext.getSocketFactory());
+	        //Log.i("DEBUG", "end hack"); // debug
 		
 		// 3 Set output capability on the URLConnection
+		mHttpsURLConnection.setRequestMethod("GET");
 		mHttpsURLConnection.setDoOutput(true);
 		
 		// 4 Get an output stream from the connection
@@ -115,6 +116,108 @@ public class MyConnection {
 		return readIt(mIS);
 	}	
 	
+	/**
+	 * 
+	 * @param mUrlStr: url string
+	 * @param mHM: data parameter
+	 * @return: html text
+	 * @throws IOException
+	 */
+	public String postHttp(String mUrlStr, HashMap<String,String> mHM) throws IOException {
+		StringBuilder mSB = new StringBuilder();
+		mSB.append(mUrlStr);
+		if (mHM!=null) {
+			mSB.append("?");
+			for (Map.Entry<String, String> item : mHM.entrySet()) {
+				mSB.append(item.getKey());
+				mSB.append("=");
+				mSB.append(item.getValue());
+				mSB.append("&");
+			}
+			
+		}
+		
+		// 1 Create Url connection 
+		mUrl = new URL(mUrlStr);
+        
+		// 2 Retrieve the URLConnection object
+		mHttpURLConnection = (HttpURLConnection) mUrl.openConnection();
+
+		// 3 Set output capability on the URLConnection
+		mHttpURLConnection.setDoOutput(true);
+		mHttpURLConnection.setRequestMethod("POST");
+		
+		// 4 Get an output stream from the connection
+		OutputStreamWriter out = new OutputStreamWriter(mHttpURLConnection.getOutputStream());
+		if (mSB!=null) {
+			out.write("string=" + mSB.toString().getBytes());
+		}
+		out.close();
+
+		// 5 Get an Input Stream from the connection
+		InputStream mIS = mHttpURLConnection.getInputStream();
+		
+		return readIt(mIS);
+	}
+		
+	/**
+	 * 
+	 * @param mUrlStr: url string
+	 * @param mHM: data parameter
+	 * @return: html text
+	 * @throws IOException
+	 * @throws NoSuchAlgorithmException 
+	 * @throws KeyManagementException 
+	 */
+	public String postHttps(String mUrlStr, HashMap<String,String> mHM) throws IOException, NoSuchAlgorithmException, KeyManagementException {
+		StringBuilder mSB = new StringBuilder();
+		mSB.append(mUrlStr);
+		if (mHM!=null) {
+			mSB.append("?");
+			for (Map.Entry<String, String> item : mHM.entrySet()) {
+				mSB.append(item.getKey());
+				mSB.append("=");
+				mSB.append(item.getValue());
+				mSB.append("&");
+			}
+			
+		}
+		
+		// 1 Create Url connection 
+		mUrl = new URL(mUrlStr);
+        
+		// 2 Retrieve the URLConnection object
+		mHttpURLConnection = (HttpURLConnection) mUrl.openConnection();
+
+	        /** 20191205**/
+	        //Log.i("DEBUG", "start hack"); // debug
+	        //  add TLS version 1.2 support
+	        //ProviderInstaller.installIfNeeded(getApplicationContext()); // java android
+	        SSLContext sslContext;
+		sslContext = SSLContext.getInstance("TLSv1.2");
+	        sslContext.init(null, null, null);
+	        sslContext.createSSLEngine();
+	        mHttpsURLConnection.setSSLSocketFactory(sslContext.getSocketFactory());
+	        //Log.i("DEBUG", "end hack"); // debug
+		
+		
+		// 3 Set output capability on the URLConnection
+		mHttpURLConnection.setDoOutput(true);
+		mHttpURLConnection.setRequestMethod("POST");
+		
+		// 4 Get an output stream from the connection
+		OutputStreamWriter out = new OutputStreamWriter(mHttpURLConnection.getOutputStream());
+		if (mSB!=null) {
+			out.write("string=" + mSB.toString().getBytes());
+		}
+		out.close();
+
+		// 5 Get an Input Stream from the connection
+		InputStream mIS = mHttpURLConnection.getInputStream();
+		
+		return readIt(mIS);
+	}
+	
     // Reads an InputStream and converts it to a String.
     private String readIt(InputStream stream) throws IOException {
         BufferedReader r = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
@@ -125,7 +228,5 @@ public class MyConnection {
         }
         return total.toString();
     }
-
-
 
 }
