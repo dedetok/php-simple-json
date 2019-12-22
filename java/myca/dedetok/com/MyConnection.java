@@ -115,7 +115,7 @@ public class MyConnection {
 		out.close();
 
 		// get response
-		int responseCode = mHttpURLConnection.getResponseCode();
+		int responseCode = mHttpsURLConnection.getResponseCode();
 		System.out.println("GET Response Code :: " + responseCode); // debug
 
 		// 5 Get an Input Stream from the connection
@@ -198,7 +198,7 @@ public class MyConnection {
 		mUrl = new URL(mUrlStr);
         
 		// 2 Retrieve the URLConnection object
-		mHttpURLConnection = (HttpURLConnection) mUrl.openConnection();
+		mHttpsURLConnection = (HttpsURLConnection) mUrl.openConnection();
 
 		/** 20191205**/
 		//Log.i("DEBUG", "start hack"); // debug
@@ -212,11 +212,11 @@ public class MyConnection {
 		//Log.i("DEBUG", "end hack"); // debug
 		
 		// 3 Set output capability on the URLConnection
-		mHttpURLConnection.setDoOutput(true);
-		mHttpURLConnection.setRequestMethod("POST");
+		mHttpsURLConnection.setDoOutput(true);
+		mHttpsURLConnection.setRequestMethod("POST");
 		
 		// 4 Get an output stream from the connection
-		OutputStreamWriter out = new OutputStreamWriter(mHttpURLConnection.getOutputStream());
+		OutputStreamWriter out = new OutputStreamWriter(mHttpsURLConnection.getOutputStream());
 		if (mHM!=null) {
 			out.write(mSB.toString());
 		}
@@ -224,11 +224,14 @@ public class MyConnection {
 		out.close();
 
 
-		int responseCode = mHttpURLConnection.getResponseCode();
+		int responseCode = mHttpsURLConnection.getResponseCode();
 		System.out.println("POST Response Code :: " + responseCode); // debug
+		
+		String responseMessage = mHttpsURLConnection.getResponseMessage();
+		System.out.println("POST Response Code :: " + responseMessage); // debug
 
 		// 5 Get an Input Stream from the connection
-		InputStream mIS = mHttpURLConnection.getInputStream();
+		InputStream mIS = mHttpsURLConnection.getInputStream();
 		
 		return readIt(mIS);
 	}
