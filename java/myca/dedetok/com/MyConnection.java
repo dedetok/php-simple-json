@@ -241,6 +241,7 @@ public class MyConnection {
 	 * sample certificate string garasiku.web.id
 	 * 1. export or copy paste your certificate string from browser
 	 * 2. for xampp copy paste from [xampp]\apache\conf\ssl.crt\server.crt
+	 * NOTE: update this string after certificate recreate or renew
 	 */
 	String certString = "-----BEGIN CERTIFICATE-----\r\n" + 
 			"MIIGTTCCBTWgAwIBAgIQYwFvKKkENw6AprzeTBQWoDANBgkqhkiG9w0BAQsFADBy\r\n" + 
