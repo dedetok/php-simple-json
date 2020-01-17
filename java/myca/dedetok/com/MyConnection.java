@@ -56,8 +56,8 @@ public class MyConnection {
 		mHttpURLConnection = (HttpURLConnection) mUrl.openConnection();
 
 		// Header 2020 01 17
-		mHttpsURLConnection.setRequestProperty("Accept", "text/html");
-		mHttpsURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0");
+		mHttpURLConnection.setRequestProperty("Accept", "text/html");
+		mHttpURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0");
 		
 		// 3 Set output capability on the URLConnection
 		mHttpURLConnection.setRequestMethod("GET");
@@ -106,10 +106,6 @@ public class MyConnection {
 		// 2 Retrieve the URLConnection object
 		mHttpsURLConnection = (HttpsURLConnection) mUrl.openConnection();
 		
-		// Header 2020 01 17
-		mHttpsURLConnection.setRequestProperty("Accept", "text/html");
-		mHttpsURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0");
-
 		// 2020 01 04
 		// manual add certificate string
 		try {
@@ -119,6 +115,10 @@ public class MyConnection {
 			//e.printStackTrace();
 		}
 		
+		// Header 2020 01 17
+		mHttpsURLConnection.setRequestProperty("Accept", "text/html");
+		mHttpsURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0");
+
 		// 3 Set output capability on the URLConnection
 		mHttpsURLConnection.setRequestMethod("GET");
 		mHttpsURLConnection.setDoOutput(true);
@@ -165,8 +165,8 @@ public class MyConnection {
 		mHttpURLConnection = (HttpURLConnection) mUrl.openConnection();
 
 		// Header 2020 01 17
-		mHttpsURLConnection.setRequestProperty("Accept", "text/html");
-		mHttpsURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0");
+		mHttpURLConnection.setRequestProperty("Accept", "text/html");
+		mHttpURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0");
 
 		// 3 Set output capability on the URLConnection
 		mHttpURLConnection.setDoOutput(true);
@@ -218,10 +218,6 @@ public class MyConnection {
 		// 2 Retrieve the URLConnection object
 		mHttpsURLConnection = (HttpsURLConnection) mUrl.openConnection();
 
-		// Header 2020 01 17
-		mHttpsURLConnection.setRequestProperty("Accept", "text/html");
-		mHttpsURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0");
-
 		// 2020 01 04
 		// manual add certificate string
 		try {
@@ -231,6 +227,10 @@ public class MyConnection {
 			//e.printStackTrace();
 		}
 		
+		// Header 2020 01 17
+		mHttpsURLConnection.setRequestProperty("Accept", "text/html");
+		mHttpsURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0");
+
 		// 3 Set output capability on the URLConnection
 		mHttpsURLConnection.setDoOutput(true);
 		mHttpsURLConnection.setRequestMethod("POST");
